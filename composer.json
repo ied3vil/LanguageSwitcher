@@ -23,7 +23,7 @@
   },
   "autoload": {
     "psr-4": {
-      "ied3vil\\LanguageSwitcher\\": "LanguageSwitcher"
+      "ied3vil\\": "src/ied3vil/"
     }
   }
 }
