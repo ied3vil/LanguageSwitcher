@@ -1,11 +1,10 @@
 <?php
-namespace ied3vil;
+namespace ied3vil\LanguageSwitcher;
 
 class LanguageSwitcher
 {
     public function __construct()
     {
-        //dafaq
         echo 'tralalala';
     }
 }
