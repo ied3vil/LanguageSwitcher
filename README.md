@@ -54,7 +54,7 @@ The default language set in your app.locale config value will be set. You can fi
 
 Switching the current language can be done in quite a few ways.
 
-1. Using the provided facade (): `LanguageSwitcher::setLanguage($language)`
+1. Using the provided facade: `LanguageSwitcher::setLanguage($language)`
 2. Using the provided `/lang/{language}` route. The config file provides flexibility in changing the actual "lang" route.
 This route can be changed using the [configuration](#configuration).
 
@@ -82,6 +82,6 @@ Example HTML:
     <li><a href="{{ url('lang/sw') }}"><img src="/img/flags/sw.png" alt="">{{ trans('locale.sw') }}</a></li>
 </ul>
 ```
-
+If you want to evidentiate the current selection language, you can use App::getLocale() or LanguageSwitcher::getCurrentLanguage().
 ##More Information
 You can find more information on regarding this package on my website, [www.ied3vil.com](http://www.ied3vil.com).
