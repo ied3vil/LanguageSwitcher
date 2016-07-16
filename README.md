@@ -12,7 +12,17 @@ If you want to add it to your composer.json manually, just open composer.json an
 ```
 composer require ied3vil/language-switcher
 ```
+
+After the package is installed, you should run the vendor:publish command in the console so the package publishes its config file to your application. You can ignore this step if you don't plan to use a custom route for switching languages, or if you are using the default "lang" route.
+```
+php artisan vendor:publish
+```
+
+You are now ready to use the switcher!
+
 ##Usage
+
+##Configuration
 
 ##More Information
 You can find more information on regarding this package on my website, http://www.ied3vil.com
