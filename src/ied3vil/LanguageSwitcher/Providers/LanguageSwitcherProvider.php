@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ied3vil\LanguageSwitcher\ServiceProviders;
+namespace ied3vil\LanguageSwitcher\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
