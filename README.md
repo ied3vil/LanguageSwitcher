@@ -71,6 +71,17 @@ The language switching route can be set in the `config/languageswitcher.php` con
 laravel's `Config::set()` / `config()->set()` methods. The key for the route is `'languageswitcher.switchPath'`.
 The recommended procedure is changing the config file `config/languageswitcher.php`.
 
+##Examples
+My preffered way to usage is this: I include the library, create my UI for switching the language, and start translating!
+
+Example HTML:
+```
+<ul class="dropdown-menu">
+    <li><a href="{{ url('lang/en') }}"><img src="/img/flags/en.png" alt="">{{ trans('locale.en') }}</a></li>
+    <li><a href="{{ url('lang/dk') }}"><img src="/img/flags/dk.png" alt="">{{ trans('locale.dk') }}</a></li>
+    <li><a href="{{ url('lang/sw') }}"><img src="/img/flags/sw.png" alt="">{{ trans('locale.sw') }}</a></li>
+</ul>
+```
 
 ##More Information
 You can find more information on regarding this package on my website, [www.ied3vil.com](http://www.ied3vil.com).
