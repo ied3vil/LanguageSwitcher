@@ -25,5 +25,6 @@ class LanguageSwitcher
     {
         echo 'Setting Language: ' . $language;
         Session::set('language', $language);
+        $this->registerLanguage();
     }
 }
