@@ -3,6 +3,7 @@
 
 namespace ied3vil\LanguageSwitcher\ServiceProviders;
 
+use Illuminate\Support\ServiceProvider;
 
 class LanguageSwitcherProvider extends ServiceProvider
 {
