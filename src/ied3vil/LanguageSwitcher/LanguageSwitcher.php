@@ -4,7 +4,7 @@ namespace ied3vil\LanguageSwitcher;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Request;
 
 class LanguageSwitcher
 {
@@ -19,37 +19,39 @@ class LanguageSwitcher
         if ($this->getStorageMethod() == 'session') {
             return Session::get($this->getLanguageKey(), Config::get('app.locale'));
         }
-        return Cookie::get($this->getLanguageKey());
+        return Request::cookie($this->getLanguageKey());
     }
 
     public function setLanguage($language)
     {
-        if ($this->getStorageMethod() == 'session') {
-            Session::set($this->getLanguageKey(), $language);
-        }
         if ($this->getStorageMethod() == 'cookie') {
-            Cookie::make('City', 'New York', $this->getCookieExpiration());
+            return cookie()->forever($this->getLanguageKey(), $language);
         }
+        Session::set($this->getLanguageKey(), $language);
         $this->registerLanguage();
     }
 
-    private function getStorageMethod()
+    public function getStorageMethod()
     {
         return Config::get('languageswitcher.store', 'session'); //defaults to session
     }
 
-    private function getLanguageKey()
+    public function getLanguageKey()
     {
         return Config::get('languageswitcher.key', 'language');
-    }
-
-    private function getCookieExpiration()
-    {
-        return Config::get('languageswitcher.cookie_expiration', 86400);
     }
 
     public function getSwitchPath()
     {
         return Config::get('languageswitcher.switchPath', 'lang');
+    }
+
+    public function getRedirect()
+    {
+        return Config::get('languageswitcher.redirect', 'redirect');
+    }
+    public function getRedirectRoute()
+    {
+        return Config::get('languageswitcher.redirect_route', '/');
     }
 }
