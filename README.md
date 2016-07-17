@@ -2,7 +2,7 @@
 Laravel Language Switcher Package
 
 ##Description
-This package provides an easy to work with language switcher that you can use in your projects.
+This package provides an easy to work with language switcher that you can use in your projects with a wide variety of config options.
 It automatically bootstraps to your Laravel project, sets the locale, and switches the languages when needed.
 
 Configuration provided supports a dynamic route for switching languages that defaults to 'lang', and redirects to the '/' route.
@@ -62,6 +62,8 @@ When using the provided routes for switching languages, you will be redirected t
 
 You should be all set! You can start writing your content in multiple languages!
 For more information on how to do this, please consult [Laravel's Documentation](https://laravel.com/docs/5.2/localization).
+
+Alternatively, you can set this yourself using your own routes, just set the session value `'language'` to the new locale and redirect.
 
 ##Configuration
 For now, only the route used for language switching can be configured.

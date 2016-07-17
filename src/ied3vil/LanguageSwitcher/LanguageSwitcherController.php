@@ -3,10 +3,16 @@
 
 namespace ied3vil\LanguageSwitcher;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 
-class LanguageSwitcherController extends Controller
+class LanguageSwitcherController extends BaseController
 {
+
+    use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
 
     public function setLanguage($language)
     {
@@ -15,3 +21,4 @@ class LanguageSwitcherController extends Controller
         return redirect('/');
     }
 }
+
