@@ -28,7 +28,7 @@ class LanguageSwitcher
             Session::set($this->getLanguageKey(), $language);
         }
         if ($this->getStorageMethod() == 'cookie') {
-            Cookies::make('City', 'New York', $this->getCookieExpiration());
+            Cookie::make('City', 'New York', $this->getCookieExpiration());
         }
         $this->registerLanguage();
     }
@@ -46,5 +46,10 @@ class LanguageSwitcher
     private function getCookieExpiration()
     {
         return Config::get('languageswitcher.cookie_expiration', 86400);
+    }
+
+    public function getSwitchPath()
+    {
+        return Config::get('languageswitcher.switchPath', 'lang');
     }
 }
