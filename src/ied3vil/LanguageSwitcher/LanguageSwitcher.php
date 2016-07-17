@@ -40,6 +40,7 @@ class LanguageSwitcher
         }
         Session::set($this->getLanguageKey(), $language);
         $this->registerLanguage();
+        return cookie('dummy-cookie', FALSE, 1); //just for cleaner code in the controller
     }
 
     /**

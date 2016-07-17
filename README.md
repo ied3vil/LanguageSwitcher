@@ -5,8 +5,10 @@ Laravel Language Switcher Package
 This package provides an easy to work with language switcher that you can use in your projects with a wide variety of config options.
 It automatically bootstraps to your Laravel project, sets the locale, and switches the languages when needed.
 
-Configuration provided supports a dynamic route for switching languages that defaults to 'lang', and redirects to the '/' route.
-Additional configuration will be added so you can customize the redirect and the method we store the current language.
+Configuration provided supports a dynamic array of different options to adjust the functionality of the package to suit your needs,
+whereas the default provided config will allow you to use the package right after installing, with almost no additional work.
+
+I know it may seem very simple and perhaps over-complicated, but you don't have to waste time and thought process on the simple things.
 
 ##Installation
 To install the package, just run composer require ied3vil/language-switcher and follow the instructions.
@@ -16,7 +18,7 @@ composer require ied3vil/language-switcher
 ```
 
 After the package is installed, you should run the vendor:publish command in the console so the package publishes its config file to your application.
-You can ignore this step if you don't plan to use a custom route for switching languages, or if you are using the default "lang" route.
+The package should work fine without this step, all config options have fall backs - however it may impact future use, so it is recommended not to skip the vendor:publish command.
 ```
 php artisan vendor:publish
 ```
@@ -66,13 +68,48 @@ For more information on how to do this, please consult [Laravel's Documentation]
 Alternatively, you can set this yourself using your own routes, just set the session value `'language'` to the new locale and redirect.
 
 ##Configuration
-For now, only the route used for language switching can be configured.
-####Changing the switcher's route
-The language switching route can be set in the `config/languageswitcher.php` configuration file
-(you must run `php artisan vendor:publish` for it to be copied to your config folder), or programatically using
-laravel's `Config::set()` / `config()->set()` methods. The key for the route is `'languageswitcher.switchPath'`.
-The recommended procedure is changing the config file `config/languageswitcher.php`.
+The package ships with quite a few configuration options:
+```
+return [
+    'switchPath' => 'lang',
+    'store' => 'session',
+    'key' => 'language',
+    'redirect' => 'route', //can be set to route | back
+    'redirect_route' => '/',
+];
+```
+The above config options can be used to customize the switcher's functionality, as described below.
+You are free to use any method to configure the package. Remember to use the publish:vendor command to avoid unexpected issues.
 
+To set options, you can use any of the following methods:
+1. Changing the config file `config/languageswitcher.php`, editing the values of the provided keys (recommended)
+2. Using laravel's runtime configuration helper - `Config::set()` | `config()->set()`, with the specification that you use the 'languageswitcher' preffix for the keys (eg. `languageswitcher.switchPath` for changing the switch path).
+#####Changing the switcher's route (default: lang/{language_flag})
+* Config key: `languageswitcher.switchPath`
+* Default Value: `lang`
+
+This config setting dynamically sets the route created in the package for switching the language.
+#####Changing store method - session | cookie (default: session)
+* Config key: `languageswitcher.store`
+* Default value: `session`
+* Accepted values: `session | cookie`
+
+This config setting changes the storage method of the language flag.
+Default is session, but cookies with forever as expiry date can be used.
+Initially this was set up as a cookie with a configurable expiry date, but for obvious reasons it was set up to never expire.
+#####Changing the key where the language flag is stored (default: lang)
+* Config key: `languageswitcher.key`
+* Default value: `language`
+
+This config setting decides what key to be used when storing the language flag, to the session or cookie.
+#####Changing the redirect type (default: route redirect to '/')
+* Config keys: `languageswitcher.redirect` and `languageswitcher.redirect_route`
+* Default value for `languageswitcher.redirect`: `route`
+* Accepted values: `route | back`
+* Default value for `languageswitcher.redirect_route`: `/`
+
+When the `languageswitcher.redirect` config value is set to route, the user is redirected to the specified `languageswitcher.redirect_route` after the new language flag is set.
+Setting the `languageswitcher.redirect` to `back` will redirect the user back to the previous page after the new language flag is set.
 ##Examples
 My preffered way to usage is this: I include the library, create my UI for switching the language, and start translating!
 
@@ -85,5 +122,7 @@ Example HTML:
 </ul>
 ```
 If you want to evidentiate the current selection language, you can use App::getLocale() or LanguageSwitcher::getCurrentLanguage().
-##More Information
+##Bugs/Issues/Improvements
+Feel free to use github for issues and suggesting improvements.
+##Additional Information
 You can find more information on regarding this package on my website, [www.ied3vil.com](http://www.ied3vil.com).

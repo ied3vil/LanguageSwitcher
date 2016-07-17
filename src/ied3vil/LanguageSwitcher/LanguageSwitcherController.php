@@ -15,18 +15,13 @@ class LanguageSwitcherController extends BaseController
 
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
 
+    /**
+     * Set the language and redirect
+     * @param $language
+     * @return mixed
+     */
     public function setLanguage($language)
     {
-        //@todo refactor this method to something prettier
-        //session
-        if (Switcher::getStorageMethod() == 'session') {
-            Switcher::setLanguage($language);
-            if (Switcher::getRedirect() == 'route') {
-                return redirect(Switcher::getRedirectRoute());
-            }
-            return back();
-        }
-        //cookie
         if (Switcher::getRedirect() == 'route') {
             return redirect(Switcher::getRedirectRoute())->withCookie(Switcher::setLanguage($language));
         }

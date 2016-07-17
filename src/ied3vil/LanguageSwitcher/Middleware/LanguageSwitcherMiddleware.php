@@ -9,6 +9,7 @@ class LanguageSwitcherMiddleware
 {
     public function handle($request, Closure $next)
     {
+        //Register language
         LanguageSwitcher::registerLanguage();
         return $next($request);
     }

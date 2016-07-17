@@ -24,7 +24,7 @@ class LanguageSwitcherProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/languageswitcher.php' => config_path('languageswitcher.php'),
         ]);
-        //include routes
+        //include routes for switching the language
         if (!App::routesAreCached()) {
             require __DIR__ . '/../routes.php';
         }
