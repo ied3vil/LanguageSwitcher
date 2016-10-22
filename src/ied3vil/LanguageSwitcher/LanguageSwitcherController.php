@@ -13,7 +13,7 @@ use ied3vil\LanguageSwitcher\Facades\LanguageSwitcher as Switcher;
 class LanguageSwitcherController extends BaseController
 {
 
-    use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
      * Set the language and redirect
