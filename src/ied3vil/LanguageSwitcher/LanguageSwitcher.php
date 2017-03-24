@@ -38,7 +38,11 @@ class LanguageSwitcher
         if ($this->getStorageMethod() == 'cookie') {
             return cookie()->forever($this->getLanguageKey(), $language);
         }
-        Session::set($this->getLanguageKey(), $language);
+        if ( interface_exists( \Illuminate\Contracts\Session\Session::class ) && method_exists(\Illuminate\Contracts\Session\Session::class, 'put') ) {
+            Session::put($this->getLanguageKey(), $language);
+        } else {
+            Session::set($this->getLanguageKey(), $language);
+        }
         $this->registerLanguage();
         return cookie('dummy-cookie', FALSE, 1); //just for cleaner code in the controller
     }
