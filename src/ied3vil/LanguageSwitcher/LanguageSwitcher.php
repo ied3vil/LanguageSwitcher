@@ -25,7 +25,7 @@ class LanguageSwitcher
         if ($this->getStorageMethod() == 'session') {
             return Session::get($this->getLanguageKey(), Config::get('app.locale'));
         }
-        return Request::cookie($this->getLanguageKey());
+        return Request::cookie($this->getLanguageKey()) ?: Config::get('app.locale');
     }
 
     /**
