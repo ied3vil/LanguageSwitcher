@@ -48,6 +48,23 @@ class LanguageSwitcher
     }
 
     /**
+     * Gets the back route with the correct language
+     * @param  string $language Language to be replaced
+     * @return string           string for back url
+     */
+    public function getLocalBack($language)
+    {
+        $backUrl = redirect()->back()->getTargetUrl();
+        $current = $this->getCurrentLanguage();
+        $start = strpos($backUrl, $current);
+        $count = strlen($current);
+        if ($backUrl[$start - 1] == '/' && (!isset($backUrl[$start + $count])) || $backUrl[$start + $count] == '/') {
+            $backUrl = substr_replace($backUrl, $language, $start, $count);
+        }
+        return $backUrl;
+    }
+
+    /**
      * Gets the storage method for the language flag
      * @return string session | cookie
      */

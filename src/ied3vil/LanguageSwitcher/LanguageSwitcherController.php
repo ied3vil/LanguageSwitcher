@@ -24,6 +24,9 @@ class LanguageSwitcherController extends BaseController
         if (Switcher::getRedirect() == 'route') {
             return redirect(Switcher::getRedirectRoute())->withCookie(Switcher::setLanguage($language));
         }
+        if (Switcher::getRedirect() == 'locale') {
+            return redirect(Switcher::getLocalBack($language))->withCookie(Switcher::setLanguage($language));
+        }
         return back()->withCookie(Switcher::setLanguage($language));
     }
 }
