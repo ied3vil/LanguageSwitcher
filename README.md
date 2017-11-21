@@ -51,7 +51,6 @@ Make sure you include the middleware at the end of the array, because it is reli
 You are now ready to use the language switcher!
 
 ## Usage
-
 The default language set in your app.locale config value will be set. You can find it in the `config/app.php` config file.
 
 Switching the current language can be done in quite a few ways.
@@ -84,11 +83,13 @@ You are free to use any method to configure the package. Remember to use the pub
 To set options, you can use any of the following methods:
 1. Changing the config file `config/languageswitcher.php`, editing the values of the provided keys (recommended)
 2. Using laravel's runtime configuration helper - `Config::set()` | `config()->set()`, with the specification that you use the 'languageswitcher' preffix for the keys (eg. `languageswitcher.switchPath` for changing the switch path).
+
 ##### Changing the switcher's route (default: lang/{language_flag})
 * Config key: `languageswitcher.switchPath`
 * Default Value: `lang`
 
 This config setting dynamically sets the route created in the package for switching the language.
+
 ##### Changing store method - session | cookie (default: session)
 * Config key: `languageswitcher.store`
 * Default value: `session`
@@ -97,11 +98,13 @@ This config setting dynamically sets the route created in the package for switch
 This config setting changes the storage method of the language flag.
 Default is session, but cookies with forever as expiry date can be used.
 Initially this was set up as a cookie with a configurable expiry date, but for obvious reasons it was set up to never expire.
+
 ##### Changing the key where the language flag is stored (default: lang)
 * Config key: `languageswitcher.key`
 * Default value: `language`
 
 This config setting decides what key to be used when storing the language flag, to the session or cookie.
+
 ##### Changing the redirect type (default: route redirect to '/')
 * Config keys: `languageswitcher.redirect` and `languageswitcher.redirect_route`
 * Default value for `languageswitcher.redirect`: `route`
@@ -110,6 +113,7 @@ This config setting decides what key to be used when storing the language flag, 
 
 When the `languageswitcher.redirect` config value is set to route, the user is redirected to the specified `languageswitcher.redirect_route` after the new language flag is set.
 Setting the `languageswitcher.redirect` to `back` will redirect the user back to the previous page after the new language flag is set.
+
 ## Examples
 My preffered way to usage is this: I include the library, create my UI for switching the language, and start translating!
 
@@ -122,7 +126,7 @@ Example HTML:
 </ul>
 ```
 If you want to evidentiate the current selection language, you can use App::getLocale() or LanguageSwitcher::getCurrentLanguage().
+
+
 ## Bugs/Issues/Improvements
 Feel free to use github for issues and suggesting improvements.
-## Additional Information
-You can find more information on regarding this package on my website, [www.ied3vil.com](http://www.ied3vil.com).
