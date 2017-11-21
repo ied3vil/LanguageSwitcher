@@ -127,8 +127,6 @@ Example HTML:
 ```
 If you want to evidentiate the current selection language, you can use App::getLocale() or LanguageSwitcher::getCurrentLanguage().
 
+
 ## Bugs/Issues/Improvements
 Feel free to use github for issues and suggesting improvements.
-
-## Additional Information
-You can find more information on regarding this package on my website, [www.ied3vil.com](http://www.ied3vil.com).
