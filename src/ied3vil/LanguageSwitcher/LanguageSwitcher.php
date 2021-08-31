@@ -54,7 +54,7 @@ class LanguageSwitcher
      */
     public function getLocalBack($language)
     {
-        $backUrl = redirect()->back()->getTargetUrl();
+        $backUrl = parse_url(redirect()->back()->getTargetUrl(), PHP_URL_PATH);
         $current = $this->getCurrentLanguage();
         $start = strpos($backUrl, $current);
         $count = strlen($current);
